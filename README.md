@@ -31,7 +31,7 @@ arguments:
 * angularPath: optional. path to angular.js file, in case you want another angular version.
 
 
-###$interpolate:
+**$interpolate:**
 
 ```js
 var ngcompile = require('ng-node-compile');
@@ -41,7 +41,7 @@ ngEnviorment.$interpolate("hello {{name}}")({ name: 'Jhon doe' });
 
 this wil return a string "hello Jhon doe"
 
-###$compile:
+**$compile:**
 
 ```js
 var ngcompile = require('ng-node-compile');
@@ -61,7 +61,7 @@ this wil return the following HTML:
 
 ##example using express and extra angular moduls:
 
-####app.js:
+**app.js:**
 
 ```js
 var express = require('express'),
@@ -76,7 +76,7 @@ app.get('/', function (req, res) {
 
 var server = app.listen(3000);
 ```
-####test.js:
+**test.js:**
 
 ```js
 angular.module('test', [])
