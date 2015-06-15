@@ -4,7 +4,7 @@ Compile html templates the angular way, in node js!
 this is a pretty new package, so don't hesitate adding issues or pull requests!
 
 ```js
-    new ngcompile().$interpolate("hello {{name}}")({ name: 'Jhon doe' });
+new ngcompile().$interpolate("hello {{name}}")({ name: 'Jhon doe' });
 ```
 
 ## Install
@@ -24,8 +24,9 @@ var ngEnviorment = new ngcompile([modules],[angularPath]);
 
 arguments:
 
-    * modules: optional. list of modules to inject to angular enviorment
-    * angularPath: optional. path to angular.js file, in case you want another angular version.
+* modules: optional. list of modules to inject to angular enviorment
+
+* angularPath: optional. path to angular.js file, in case you want another angular version.
 
 
 ###$interpolate:
