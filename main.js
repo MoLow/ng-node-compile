@@ -1,12 +1,13 @@
-﻿var jsdom = require("jsdom-nogyp");
+﻿var jsdom = require("jsdom-nogyp"),
+    path = require('path');
 
 var ENVIORMENT_NOT_READY = "Angular enviorment not yet ready";
 
 function ngCompile(modules, angularPath) {
-    this.modules = modules || [], _self = this;
-    this.modules.push(angularPath || "./public/angular.js");
-    this.ready = false;
 
+    this.modules = modules || [], _self = this;
+    this.modules.unshift({ name: 'ng', path: angularPath || path.resolve(__dirname, "angular.js") });
+    this.ready = false;
 
     this.env = jsdom.env({
         html: '<p></p>',
@@ -17,13 +18,18 @@ function ngCompile(modules, angularPath) {
                 global.window = window;
                 global.document = window.document;
 
-                _self.modules.forEach(function (module) { require(module); })
+                var _modules = [];
+                _self.modules.forEach(function (module) {
+                    require(path.resolve(process.cwd(), module.path));
+                    if (module.name === "ng") global.angular = global.window.angular;
+                    _modules.push(module.name);
+                });
 
                 _self.window = window;
                 _self.angular = window.angular;
-                window.angular.injector(['ng']).invoke(function ($rootScope, $compile, $interpolate) {
+                window.angular.injector(_modules).invoke(function ($rootScope, $compile, $interpolate) {
                     _self.services = { $rootScope: $rootScope, $compile: $compile, $interpolate: $interpolate };
-                    this.ready = true;
+                    _self.ready = true;
                 });
             }
         }
