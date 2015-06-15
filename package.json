@@ -1,0 +1,31 @@
+{
+  "name": "ng-node-compile",
+  "version": "1.0.0",
+  "description": "Compile angular templates, on Server side!",
+  "main": "main.js",
+  "dependencies": {
+    "express": "^4.12.4",
+    "jsdom-nogyp": "^0.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MoLow/ng-node-compile.git"
+  },
+  "keywords": [
+    "angular",
+    "ng",
+    "template",
+    "angular-server",
+    "ng-node"
+  ],
+  "author": "Moshe Atlow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MoLow/ng-node-compile/issues"
+  },
+  "homepage": "https://github.com/MoLow/ng-node-compile"
+}
