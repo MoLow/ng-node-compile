@@ -86,4 +86,5 @@ angular.module('test', [])
 ```
 
 and the restlt simply looks this way:
+
 ![result](https://raw.githubusercontent.com/MoLow/ng-node-compile/master/capture.PNG)
