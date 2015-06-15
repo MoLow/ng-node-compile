@@ -50,9 +50,9 @@ ngEnviorment.$compile("<div ng-repeat=\"n in [1,2,3,4,5]\">hello {{name}} {{n}}<
 this wil return the following HTML:
 
 ```html
-<div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Moshe 1</div>
-<div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Moshe 2</div>
-<div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Moshe 3</div>
-<div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Moshe 4</div>
-<div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Moshe 5</div>
+<div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 1</div>
+<div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 2</div>
+<div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 3</div>
+<div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 4</div>
+<div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 5</div>
 ```
