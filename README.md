@@ -1,12 +1,12 @@
 # ng-node-compile [![Build Status](https://travis-ci.org/MoLow/ng-node-compile.svg?branch=v2.x)](https://travis-ci.org/MoLow/ng-node-compile) [![Coverage Status](https://coveralls.io/repos/MoLow/ng-node-compile/badge.svg?branch=v2.x&service=github)](https://coveralls.io/github/MoLow/ng-node-compile?branch=v2.x)
 
+[![Build Status](https://travis-ci.org/MoLow/ng-node-compile.svg?branch=v2.x)](https://travis-ci.org/MoLow/ng-node-compile) [![Coverage Status](https://coveralls.io/repos/MoLow/ng-node-compile/badge.svg?branch=v2.x&service=github)](https://coveralls.io/github/MoLow/ng-node-compile?branch=v2.x)
+[![npm](https://nodei.co/npm/ng-node-compile.png)](https://www.npmjs.com/package/ng-node-compile)
+
 Compile html templates the angular way, in node js!
 this is a pretty new package, so don't hesitate adding issues or pull requests!
 
 Note that as of our 2.0.0 release, nc-node-compile no longer works with Node.js™, and instead requires io.js. You are still welcome to install a release in the [1.x](https://github.com/MoLow/ng-node-compile/tree/v1.x) series if you use Node.js™.
-
-[![npm](https://nodei.co/npm/ng-node-compile.png)](https://www.npmjs.com/package/ng-node-compile)
-
 
 ```js
 new ngcompile().$interpolate("hello {{name}}")({ name: 'Jhon doe' });
