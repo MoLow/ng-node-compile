@@ -3,6 +3,8 @@
 Compile html templates the angular way, in node js!
 this is a pretty new package, so don't hesitate adding issues or pull requests!
 
+Note that as of our 2.0.0 release, ng-node-compile no longer works with Node.js™, and instead requires io.js. You are still welcome to install a release in the 1.x series if you use Node.js™.
+
 ```js
 new ngcompile().$interpolate("hello {{name}}")({ name: 'Jhon doe' });
 ```
@@ -20,7 +22,7 @@ The library exposes several angular services, which will let you compile angular
 
 this is the function to create a angular enviorment. just
 ```js
-var ngEnviorment = new ngcompile([modules],[angularPath]);
+var ngEnviorment = new ngcompile([modules],[angularPath],[settings]);
 ```
 
 arguments:
@@ -30,6 +32,7 @@ arguments:
 
 * angularPath: optional. path to angular.js file, in case you want another angular version.
 
+* settings: optional. could be used for changing angular's {{ startSymbol and }} endSymbo
 
 **$interpolate:**
 
@@ -47,6 +50,29 @@ this wil return a string "hello Jhon doe"
 var ngcompile = require('ng-node-compile');
 var ngEnviorment = new ngcompile();
 ngEnviorment.$compile("<div ng-repeat=\"n in [1,2,3,4,5]\">hello {{name}} {{n}}</div>")({ name: 'Jhon doe' });
+```
+
+
+**using settings**
+```js
+var ngcompile = require('ng-node-compile');
+var ngEnviorment = new ngcompile({ startSymbol: '[[', endSymbol: ']]' });
+ngEnviorment.$compile("<div class=\"[[name]]\">hello {{name}}</div>")({ name: 'active' });
+```
+can also be called with angular modules and angular path arguments:
+```js
+var ngEnviorment = new ngcompile([{ name: 'test', path: './test.js' }], './angular.js', { startSymbol: '[[', endSymbol: ']]' });
+```
+
+**async issues**
+usualy ng-node-compile should work perfectly in synchronic calls. if You get a "Angular enviorment not yet ready" error,
+you could use the onReady function:
+```js
+var ngcompile = require('ng-node-compile');
+var ngEnviorment = new ngcompile();
+ngEnviorment.onReady(function(){
+    ngEnviorment.$interpolate("hello {{name}}")({ name: 'Jhon doe' });
+});
 ```
 
 

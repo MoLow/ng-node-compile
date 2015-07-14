@@ -1,20 +1,31 @@
-﻿var jsdom = require("jsdom-nogyp"),
+﻿var jsdom = require("jsdom"),
     path = require('path');
 
 var ENVIORMENT_NOT_READY = "Angular enviorment not yet ready";
 
 function ngCompile(modules, angularPath, settings) {
 
-    if ((!(modules instanceof Array)) && (typeof modules === "object")) {
-        settings = modules;
+    if (typeof angularPath === "object") {
+        settings = angularPath;
+        angularPath = null;
+    }
+
+    if (!(modules instanceof Array)) {
+        if (typeof modules === "object")
+            settings = modules;
+        else if (typeof modules === "string") {
+            angularPath = modules;
+        }
         modules = [];
     }
+
+
     this.settings = settings || {};
     this.modules = modules || [], _self = this;
     this.modules.unshift({ name: 'ng', path: angularPath || path.resolve(__dirname, "angular.js") });
     this.ready = false;
 
-    if (!this.envReady) throw new Error(ENVIORMENT_NOT_READY);
+    if (!ngCompile.prototype.envReady) throw new Error(ENVIORMENT_NOT_READY);
 
     this._modules = [];
     this.modules.forEach(function (module) {
@@ -31,8 +42,6 @@ function ngCompile(modules, angularPath, settings) {
         angular.module('ngCompileInterpolateProviderSymbols', []).config(function ($interpolateProvider) {
             if (_self.settings.startSymbol) $interpolateProvider.startSymbol(_self.settings.startSymbol.toString());
             if (_self.settings.endSymbol) $interpolateProvider.endSymbol(_self.settings.endSymbol.toString());
-
-            console.log(_self.settings.startSymbol === '[[' && _self.settings.endSymbol === ']]');
         });
         this._modules.push('ngCompileInterpolateProviderSymbols');
     }
@@ -44,6 +53,7 @@ function ngCompile(modules, angularPath, settings) {
     });
 }
 
+ngCompile.prototype.envReady = false;
 ngCompile.prototype.env = jsdom.env({
     html: '<p></p>',
     done: function (errors, window) {
