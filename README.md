@@ -75,9 +75,11 @@ usualy ng-node-compile should work perfectly in synchronic calls. if You get a "
 you could use the onReady function:
 ```js
 var ngcompile = require('ng-node-compile');
-var ngEnviorment = new ngcompile();
-ngEnviorment.onReady(function(){
-    ngEnviorment.$interpolate("hello {{name}}")({ name: 'Jhon doe' });
+ngcompile.prototype.onEnvReady(function(){
+	var ngEnviorment = new ngcompile();
+	ngEnviorment.onReady(function(){
+		ngEnviorment.$interpolate("hello {{name}}")({ name: 'Jhon doe' });
+	});
 });
 ```
 
