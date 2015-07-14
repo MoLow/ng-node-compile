@@ -1,5 +1,8 @@
 language: node_js
 node_js:
-  - "iojs-v2.3.4" 
+  - "iojs"
+  - "iojs-v1.0.4"
+  
+script: "sudo $(which npm) test"  
   
 before_install: npm install -g mocha
