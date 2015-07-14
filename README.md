@@ -3,7 +3,7 @@
 Compile html templates the angular way, in node js!
 this is a pretty new package, so don't hesitate adding issues or pull requests!
 
-Note: this version is for support in Node.js™. if need to use in io.js, use newer version of package.
+Note that as of our 2.0.0 release, nc-node-compile no longer works with Node.js™, and instead requires io.js. You are still welcome to install a release in the 2.x series if you use Node.js™.
 
 ```js
 new ngcompile().$interpolate("hello {{name}}")({ name: 'Jhon doe' });

@@ -4,7 +4,7 @@
   "description": "Compile angular templates, on Server side!",
   "main": "main.js",
   "dependencies": {
-    "jsdom-nogyp": "^0.8.3"
+    "jsdom": "^4.0.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
