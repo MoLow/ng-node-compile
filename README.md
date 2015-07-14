@@ -1,4 +1,5 @@
-# ng-node-compile
+# ng-node-compile [![Build Status](https://travis-ci.org/MoLow/ng-node-compile.svg?branch=v1.x)](https://travis-ci.org/MoLow/ng-node-compile) [![Coverage Status](https://coveralls.io/repos/MoLow/ng-node-compile/badge.svg?branch=v1.x&service=github)](https://coveralls.io/github/MoLow/ng-node-compile?branch=v1.x)
+
 
 Compile html templates the angular way, in node js!
 this is a pretty new package, so don't hesitate adding issues or pull requests!
