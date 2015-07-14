@@ -15,9 +15,3 @@ matrix:
     - env: TEST_SUITE=node
       node_js: iojs
       sudo: false
-    - env: TEST_SUITE=browser
-      node_js: iojs
-      addons:
-        sauce_connect:
-          username: "jsdom"
-          access_key: "7d402b1d-0388-467c-8d99-edf195456eee"
