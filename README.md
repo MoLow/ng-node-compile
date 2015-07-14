@@ -1,6 +1,8 @@
-# ng-node-compile [![Build Status](https://travis-ci.org/MoLow/ng-node-compile.svg?branch=v2.x)](https://travis-ci.org/MoLow/ng-node-compile) [![Coverage Status](https://coveralls.io/repos/MoLow/ng-node-compile/badge.svg?branch=v2.x&service=github)](https://coveralls.io/github/MoLow/ng-node-compile?branch=v2.x)
+# ng-node-compile
 
-[![Build Status](https://travis-ci.org/MoLow/ng-node-compile.svg?branch=v2.x)](https://travis-ci.org/MoLow/ng-node-compile) [![Coverage Status](https://coveralls.io/repos/MoLow/ng-node-compile/badge.svg?branch=v2.x&service=github)](https://coveralls.io/github/MoLow/ng-node-compile?branch=v2.x)
+[![Build Status](https://travis-ci.org/MoLow/ng-node-compile.svg?branch=v2.x)](https://travis-ci.org/MoLow/ng-node-compile)
+[![Coverage Status](https://coveralls.io/repos/MoLow/ng-node-compile/badge.svg?branch=v2.x&service=github)](https://coveralls.io/github/MoLow/ng-node-compile?branch=v2.x)
+
 
 [![npm](https://nodei.co/npm/ng-node-compile.png)](https://www.npmjs.com/package/ng-node-compile)
 
