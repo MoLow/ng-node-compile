@@ -1,10 +1,10 @@
 {
   "name": "ng-node-compile",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "description": "Compile angular templates, on Server side!",
   "main": "main.js",
   "dependencies": {
-    "jsdom-nogyp": "^0.8.3"
+    "jsdom-no-contextify": "^3.1.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",
