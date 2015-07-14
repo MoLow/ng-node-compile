@@ -1,4 +1,4 @@
-﻿var jsdom = require("jsdom-nogyp"),
+﻿var jsdom = require("jsdom-no-contextify"),
     path = require('path');
 
 var ENVIORMENT_NOT_READY = "Angular enviorment not yet ready";
