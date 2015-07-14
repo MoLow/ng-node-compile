@@ -21,7 +21,8 @@ function ngCompile(modules, angularPath, settings) {
 
 
     this.settings = settings || {};
-    this.modules = modules || [], _self = this;
+    this.modules = modules || [];
+	var	_self = this;
     this.modules.unshift({ name: 'ng', path: angularPath || path.resolve(__dirname, "angular.js") });
     this.ready = false;
 
