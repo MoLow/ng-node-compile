@@ -8,11 +8,12 @@
   },
   "devDependencies": {
     "chai": "^3.0.0",
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.17",
     "mocha": "^2.2.5"
   },
   "scripts": {
-    "test": "mocha",
-	"coveralls": "jscoverage lib && YOURPACKAGE_COVERAGE=1 nodeunit --reporter=lcov test | coveralls"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
