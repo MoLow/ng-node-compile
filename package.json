@@ -1,6 +1,6 @@
 {
   "name": "ng-node-compile",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Compile angular templates, on Server side!",
   "main": "main.js",
   "dependencies": {
@@ -11,7 +11,8 @@
     "mocha": "^2.2.5"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+	"coveralls": "jscoverage lib && YOURPACKAGE_COVERAGE=1 nodeunit --reporter=lcov test | coveralls"
   },
   "repository": {
     "type": "git",
