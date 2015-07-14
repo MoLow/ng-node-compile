@@ -1,3 +1,5 @@
 language: node_js
 node_js:
   - "iojs-v 2.3.4" 
+  
+before_install: npm install -g mocha
