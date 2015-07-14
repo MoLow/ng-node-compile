@@ -21,7 +21,7 @@ function ngCompile(modules, angularPath, settings) {
 
 
     this.settings = settings || {};
-    this.modules = modules || [];
+    this.modules = modules;
 	var	_self = this;
     this.modules.unshift({ name: 'ng', path: angularPath || path.resolve(__dirname, "angular.js") });
     this.ready = false;
@@ -41,7 +41,9 @@ function ngCompile(modules, angularPath, settings) {
 
     if (_self.settings.startSymbol || _self.settings.endSymbol) {
         angular.module('ngCompileInterpolateProviderSymbols', []).config(function ($interpolateProvider) {
+			/* istanbul ignore else */
             if (_self.settings.startSymbol) $interpolateProvider.startSymbol(_self.settings.startSymbol.toString());
+			/* istanbul ignore else */
             if (_self.settings.endSymbol) $interpolateProvider.endSymbol(_self.settings.endSymbol.toString());
         });
         this._modules.push('ngCompileInterpolateProviderSymbols');
@@ -58,6 +60,7 @@ ngCompile.prototype.envReady = false;
 ngCompile.prototype.env = jsdom.env({
     html: '<p></p>',
     done: function (errors, window) {
+		/* istanbul ignore if */
         if (errors)
             console.log(errors);
         else {
