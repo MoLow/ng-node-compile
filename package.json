@@ -1,12 +1,15 @@
 {
   "name": "ng-node-compile",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "Compile angular templates, on Server side!",
   "main": "main.js",
   "dependencies": {
     "jsdom-nogyp": "^0.8.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

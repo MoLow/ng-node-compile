@@ -3,37 +3,64 @@
 
 var ENVIORMENT_NOT_READY = "Angular enviorment not yet ready";
 
-function ngCompile(modules, angularPath) {
+function ngCompile(modules, angularPath, settings) {
 
+    if ((!(modules instanceof Array)) && (typeof modules === "object")) {
+        settings = modules;
+        modules = [];
+    }
+    this.settings = settings || {};
     this.modules = modules || [], _self = this;
     this.modules.unshift({ name: 'ng', path: angularPath || path.resolve(__dirname, "angular.js") });
     this.ready = false;
 
-    this.env = jsdom.env({
-        html: '<p></p>',
-        done: function (errors, window) {
-            if (errors)
-                console.log(errors);
-            else {
-                global.window = window;
-                global.document = window.document;
+    if (!this.envReady) throw new Error(ENVIORMENT_NOT_READY);
 
-                var _modules = [];
-                _self.modules.forEach(function (module) {
-                    require(path.resolve(process.cwd(), module.path));
-                    if (module.name === "ng") global.angular = global.window.angular;
-                    _modules.push(module.name);
-                });
-
-                _self.window = window;
-                _self.angular = window.angular;
-                window.angular.injector(_modules).invoke(function ($rootScope, $compile, $interpolate) {
-                    _self.services = { $rootScope: $rootScope, $compile: $compile, $interpolate: $interpolate };
-                    _self.ready = true;
-                });
-            }
-        }
+    this._modules = [];
+    this.modules.forEach(function (module) {
+        require(path.resolve(process.cwd(), module.path));
+        if (module.name === "ng") global.angular = global.window.angular;
+        _self._modules.push(module.name);
     });
+
+
+    this.window = global.window;
+    this.angular = window.angular;
+
+    if (_self.settings.startSymbol || _self.settings.endSymbol) {
+        angular.module('ngCompileInterpolateProviderSymbols', []).config(function ($interpolateProvider) {
+            if (_self.settings.startSymbol) $interpolateProvider.startSymbol(_self.settings.startSymbol.toString());
+            if (_self.settings.endSymbol) $interpolateProvider.endSymbol(_self.settings.endSymbol.toString());
+
+            console.log(_self.settings.startSymbol === '[[' && _self.settings.endSymbol === ']]');
+        });
+        this._modules.push('ngCompileInterpolateProviderSymbols');
+    }
+
+    window.angular.injector(this._modules).invoke(function ($rootScope, $compile, $interpolate) {
+        _self.services = { $rootScope: $rootScope, $compile: $compile, $interpolate: $interpolate };
+        _self.ready = true;
+        if (typeof _self.readyCallback === "function") _self.readyCallback();
+    });
+}
+
+ngCompile.prototype.env = jsdom.env({
+    html: '<p></p>',
+    done: function (errors, window) {
+        if (errors)
+            console.log(errors);
+        else {
+            global.window = window;
+            global.document = window.document;
+            ngCompile.prototype.envReady = true;
+        }
+    }
+});
+ngCompile.prototype.onReady = function (callback) {
+    if (this.ready)
+        callback();
+    else
+        this.readyCallback = callback;
 }
 ngCompile.prototype.$new = function () {
     if (!this.ready) throw new Error(ENVIORMENT_NOT_READY);
