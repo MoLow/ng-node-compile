@@ -9,11 +9,8 @@ env:
 sudo: false
 before_install: 
   - npm install -g mocha
-  - npm install jscoverage --save-dev
-  - npm install coveralls --save-dev
-  - npm install mocha-lcov-reporter --save-dev
+  - npm install -g istanbul
+  - npm install -g coveralls
   - git submodule update --init --recursive
-  
-after_success:
-  - ./node_modules/.bin/jscoverage lib lib-cov
-  - mocha test/test.js -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
+
+after_script: NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
