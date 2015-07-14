@@ -14,7 +14,24 @@ describe('arguments', function () {
 });
 
 describe('Ready callback', function () {
-    it('Should callback on ready', function (done) {
+    it('Should callback on envReady', function (done) {
+		ngcompile.prototype.onEnvReady(function(){
+			var ngEnviorment = new ngcompile();
+			ngEnviorment.should.be.ok;			
+			ngcompile.prototype.envReady=false;
+			ngEnviorment.onEnvReady(function(){
+				ngEnviorment.envReady.should.be.false;	
+				ngcompile.prototype.envReady=true;
+				ngEnviorment.onEnvReady(function(){
+					ngEnviorment.ready.should.be.true;
+					done();
+				});
+			});
+			ngcompile.prototype.envReadyCallback();
+		});
+    });
+	
+	it('Should callback on ready', function (done) {
 		var ngEnviorment = new ngcompile();
 		ngEnviorment.should.be.ok;
         ngEnviorment.ready = false;

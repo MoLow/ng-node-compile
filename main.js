@@ -56,19 +56,26 @@ function ngCompile(modules, angularPath, settings) {
     });
 }
 
+ngCompile.prototype.onEnvReady = function (callback) {
+    if (ngCompile.prototype.envReady)
+        callback();
+    else
+        ngCompile.prototype.envReadyCallback = callback;
+}
 ngCompile.prototype.envReady = false;
 ngCompile.prototype.env = jsdom.env({
-    html: '<p></p>',
-    done: function (errors, window) {
+	html: '<p></p>',
+	done: function (errors, window) {
 		/* istanbul ignore if */
-        if (errors)
-            console.log(errors);
-        else {
-            global.window = window;
-            global.document = window.document;
-            ngCompile.prototype.envReady = true;
-        }
-    }
+		if (errors)
+			console.log(errors);
+		else {
+			global.window = window;
+			global.document = window.document;
+			ngCompile.prototype.envReady = true;
+			if(ngCompile.prototype.envReadyCallback) ngCompile.prototype.envReadyCallback();
+		}
+	}
 });
 ngCompile.prototype.onReady = function (callback) {
     if (this.ready)
