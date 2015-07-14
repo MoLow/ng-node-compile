@@ -2,9 +2,8 @@
 
 [![Build Status](https://travis-ci.org/MoLow/ng-node-compile.svg?branch=v2.x)](https://travis-ci.org/MoLow/ng-node-compile)
 [![Coverage Status](https://coveralls.io/repos/MoLow/ng-node-compile/badge.svg?branch=v2.x&service=github)](https://coveralls.io/github/MoLow/ng-node-compile?branch=v2.x)
-
-
-[![npm](https://nodei.co/npm/ng-node-compile.png)](https://www.npmjs.com/package/ng-node-compile)
+[![npm](https://img.shields.io/npm/v/ng-node-compile.svg)](https://www.npmjs.com/package/ng-node-compile)
+[![dependencies](https://img.shields.io/david/MoLow/ng-node-compile.svg)]
 
 Compile html templates the angular way, in node js!
 this is a pretty new package, so don't hesitate adding issues or pull requests!
