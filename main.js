@@ -1,4 +1,4 @@
-﻿var jsdom = require("jsdom"),
+﻿var jsdom = require("jsdom-nogyp"),
     path = require('path');
 
 var ENVIORMENT_NOT_READY = "Angular enviorment not yet ready";
