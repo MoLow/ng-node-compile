@@ -1,0 +1,112 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish',
+1 verbose cli   '--force' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 warn using --force I sure hope you know what you are doing.
+6 verbose publish [ '.' ]
+7 verbose cache add [ '.', null ]
+8 verbose cache add name=undefined spec="." args=[".",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: '.',
+9 verbose parsed url   path: '.',
+9 verbose parsed url   href: '.' }
+10 silly lockFile 3a52ce78- .
+11 verbose lock . C:\Users\Moshe\AppData\Roaming\npm-cache\3a52ce78-.lock
+12 verbose tar pack [ 'C:\\Users\\Moshe\\AppData\\Roaming\\npm-cache\\ng-node-compile\\2.0.1\\package.tgz',
+12 verbose tar pack   '.' ]
+13 verbose tarball C:\Users\Moshe\AppData\Roaming\npm-cache\ng-node-compile\2.0.1\package.tgz
+14 verbose folder .
+15 info prepublish ng-node-compile@2.0.1
+16 silly lockFile 1f1177db-tar tar://.
+17 verbose lock tar://. C:\Users\Moshe\AppData\Roaming\npm-cache\1f1177db-tar.lock
+18 silly lockFile 42439887-g-node-compile-2-0-1-package-tgz tar://C:\Users\Moshe\AppData\Roaming\npm-cache\ng-node-compile\2.0.1\package.tgz
+19 verbose lock tar://C:\Users\Moshe\AppData\Roaming\npm-cache\ng-node-compile\2.0.1\package.tgz C:\Users\Moshe\AppData\Roaming\npm-cache\42439887-g-node-compile-2-0-1-package-tgz.lock
+20 silly lockFile 1f1177db-tar tar://.
+21 silly lockFile 1f1177db-tar tar://.
+22 silly lockFile 42439887-g-node-compile-2-0-1-package-tgz tar://C:\Users\Moshe\AppData\Roaming\npm-cache\ng-node-compile\2.0.1\package.tgz
+23 silly lockFile 42439887-g-node-compile-2-0-1-package-tgz tar://C:\Users\Moshe\AppData\Roaming\npm-cache\ng-node-compile\2.0.1\package.tgz
+24 silly lockFile bb6ba736-he-ng-node-compile-2-0-1-package C:\Users\Moshe\AppData\Roaming\npm-cache\ng-node-compile\2.0.1\package
+25 verbose lock C:\Users\Moshe\AppData\Roaming\npm-cache\ng-node-compile\2.0.1\package C:\Users\Moshe\AppData\Roaming\npm-cache\bb6ba736-he-ng-node-compile-2-0-1-package.lock
+26 silly lockFile bb6ba736-he-ng-node-compile-2-0-1-package C:\Users\Moshe\AppData\Roaming\npm-cache\ng-node-compile\2.0.1\package
+27 silly lockFile bb6ba736-he-ng-node-compile-2-0-1-package C:\Users\Moshe\AppData\Roaming\npm-cache\ng-node-compile\2.0.1\package
+28 silly lockFile 3a52ce78- .
+29 silly lockFile 3a52ce78- .
+30 silly publish { name: 'ng-node-compile',
+30 silly publish   version: '2.0.1',
+30 silly publish   description: 'Compile angular templates, on Server side!',
+30 silly publish   main: 'main.js',
+30 silly publish   dependencies: { jsdom: '^5.0.0' },
+30 silly publish   devDependencies:
+30 silly publish    { chai: '^3.0.0',
+30 silly publish      coveralls: '^2.11.2',
+30 silly publish      istanbul: '^0.3.17',
+30 silly publish      mocha: '^2.2.5' },
+30 silly publish   scripts: { test: 'mocha' },
+30 silly publish   repository:
+30 silly publish    { type: 'git',
+30 silly publish      url: 'https://github.com/MoLow/ng-node-compile.git' },
+30 silly publish   keywords: [ 'angular', 'ng', 'template', 'angular-server', 'ng-node' ],
+30 silly publish   author: { name: 'Moshe Atlow' },
+30 silly publish   license: 'ISC',
+30 silly publish   bugs: { url: 'https://github.com/MoLow/ng-node-compile/issues' },
+30 silly publish   homepage: 'https://github.com/MoLow/ng-node-compile',
+30 silly publish   readme: '# ng-node-compile [![Build Status](https://travis-ci.org/MoLow/ng-node-compile.svg?branch=v2.x)](https://travis-ci.org/MoLow/ng-node-compile) [![Coverage Status](https://coveralls.io/repos/MoLow/ng-node-compile/badge.svg?branch=v2.x&service=github)](https://coveralls.io/github/MoLow/ng-node-compile?branch=v2.x)\r\n\r\n[![Build Status](https://travis-ci.org/MoLow/ng-node-compile.svg?branch=v2.x)](https://travis-ci.org/MoLow/ng-node-compile) [![Coverage Status](https://coveralls.io/repos/MoLow/ng-node-compile/badge.svg?branch=v2.x&service=github)](https://coveralls.io/github/MoLow/ng-node-compile?branch=v2.x)\r\n[![npm](https://nodei.co/npm/ng-node-compile.png)](https://www.npmjs.com/package/ng-node-compile)\r\n\r\nCompile html templates the angular way, in node js!\r\nthis is a pretty new package, so don\'t hesitate adding issues or pull requests!\r\n\r\nNote that as of our 2.0.0 release, nc-node-compile no longer works with Node.js�, and instead requires io.js. You are still welcome to install a release in the [1.x](https://github.com/MoLow/ng-node-compile/tree/v1.x) series if you use Node.js�.\r\n\r\n```js\r\nnew ngcompile().$interpolate("hello {{name}}")({ name: \'Jhon doe\' });\r\n```\r\n\r\n## Install\r\n\r\n```bash\r\n$ npm install ng-node-compile\r\n```\r\n\r\n## How to Use?\r\nThe library exposes several angular services, which will let you compile angular templates inside node:\r\n\r\n**ngcompile**\r\n\r\nthis is the function to create a angular enviorment. just\r\n```js\r\nvar ngEnviorment = new ngcompile([modules],[angularPath],[settings]);\r\n```\r\n\r\narguments:\r\n\r\n* modules: optional. array of modules to inject to angular enviorment.\r\n  example: [{name: \'testModule\', path: \'./test.js\'}]\r\n\r\n* angularPath: optional. path to angular.js file, in case you want another angular version.\r\n\r\n* settings: optional. could be used for changing angular\'s {{ startSymbol and }} endSymbo\r\n\r\n**$interpolate:**\r\n\r\n```js\r\nvar ngcompile = require(\'ng-node-compile\');\r\nvar ngEnviorment = new ngcompile();\r\nngEnviorment.$interpolate("hello {{name}}")({ name: \'Jhon doe\' });\r\n```\r\n\r\nthis wil return a string "hello Jhon doe"\r\n\r\n**$compile:**\r\n\r\n```js\r\nvar ngcompile = require(\'ng-node-compile\');\r\nvar ngEnviorment = new ngcompile();\r\nngEnviorment.$compile("<div ng-repeat=\\"n in [1,2,3,4,5]\\">hello {{name}} {{n}}</div>")({ name: \'Jhon doe\' });\r\n```\r\n\r\n\r\n**using settings**\r\n```js\r\nvar ngcompile = require(\'ng-node-compile\');\r\nvar ngEnviorment = new ngcompile({ startSymbol: \'[[\', endSymbol: \']]\' });\r\nngEnviorment.$compile("<div class=\\"[[name]]\\">hello {{name}}</div>")({ name: \'active\' });\r\n```\r\ncan also be called with angular modules and angular path arguments:\r\n```js\r\nvar ngEnviorment = new ngcompile([{ name: \'test\', path: \'./test.js\' }], \'./angular.js\', { startSymbol: \'[[\', endSymbol: \']]\' });\r\n```\r\n\r\n**async issues**\r\nusualy ng-node-compile should work perfectly in synchronic calls. if You get a "Angular enviorment not yet ready" error,\r\nyou could use the onReady function:\r\n```js\r\nvar ngcompile = require(\'ng-node-compile\');\r\nvar ngEnviorment = new ngcompile();\r\nngEnviorment.onReady(function(){\r\n    ngEnviorment.$interpolate("hello {{name}}")({ name: \'Jhon doe\' });\r\n});\r\n```\r\n\r\n\r\n##example using express and extra angular moduls:\r\n\r\n**app.js:**\r\n\r\n```js\r\nvar express = require(\'express\'),\r\n    ngcompile = require(\'ng-node-compile\');\r\n\r\nvar ngEnviorment = new ngcompile([{ name: \'test\', path: \'./test.js\' }]);\r\nvar app = express();\r\n\r\napp.get(\'/\', function (req, res) {\r\n    res.send(ngEnviorment.$compile("<div ng-repeat=\\"n in [1,2,3,4,5]\\" yellow=\\"{{n==3}}\\">hello {{name}} {{n}}</div>")({ name: \'Jhon doe\' }));\r\n});\r\n\r\nvar server = app.listen(3000);\r\n```\r\n**test.js:**\r\n\r\n```js\r\nangular.module(\'test\', [])\r\n.directive(\'yellow\', [function () {\r\n    return {\r\n        restrict: "A",\r\n        replace: false,\r\n        scope: false,\r\n        link: function (scope, element, attr) {\r\n            if (attr[\'yellow\'].toString() === "true") element.css(\'color\', \'yellow\')\r\n        }\r\n    }\r\n}])\r\n```\r\n\r\nand the restlt simply looks this way:\r\n\r\n![result](https://raw.githubusercontent.com/MoLow/ng-node-compile/master/capture.PNG)\r\n\r\n```html\r\n<div ng-repeat="n in [1,2,3,4,5]" yellow="false" class="ng-binding ng-scope">hello Jhon doe 1</div>\r\n<div ng-repeat="n in [1,2,3,4,5]" yellow="false" class="ng-binding ng-scope">hello Jhon doe 2</div>\r\n<div ng-repeat="n in [1,2,3,4,5]" yellow="true" class="ng-binding ng-scope" style="color: yellow;">hello Jhon doe 3</div>\r\n<div ng-repeat="n in [1,2,3,4,5]" yellow="false" class="ng-binding ng-scope">hello Jhon doe 4</div>\r\n<div ng-repeat="n in [1,2,3,4,5]" yellow="false" class="ng-binding ng-scope">hello Jhon doe 5</div>\r\n```',
+30 silly publish   readmeFilename: 'README.md',
+30 silly publish   gitHead: '18857fe47b799229e1ecc59d13373b6178b037a7',
+30 silly publish   _id: 'ng-node-compile@2.0.1',
+30 silly publish   _shasum: 'bbbe769bbe9c2be309e6046019208f24aec0f88f',
+30 silly publish   _from: '.' }
+31 verbose request where is /ng-node-compile
+32 verbose request registry https://registry.npmjs.org/
+33 verbose request id 3e9ee597af71a6f8
+34 verbose url raw /ng-node-compile
+35 verbose url resolving [ 'https://registry.npmjs.org/', './ng-node-compile' ]
+36 verbose url resolved https://registry.npmjs.org/ng-node-compile
+37 verbose request where is https://registry.npmjs.org/ng-node-compile
+38 info trying registry request attempt 1 at 19:28:06
+39 http PUT https://registry.npmjs.org/ng-node-compile
+40 http 403 https://registry.npmjs.org/ng-node-compile
+41 verbose headers { 'content-type': 'application/json',
+41 verbose headers   'cache-control': 'max-age=60',
+41 verbose headers   'content-length': '95',
+41 verbose headers   'accept-ranges': 'bytes',
+41 verbose headers   date: 'Tue, 14 Jul 2015 16:28:09 GMT',
+41 verbose headers   via: '1.1 varnish',
+41 verbose headers   connection: 'keep-alive',
+41 verbose headers   'x-served-by': 'cache-fra1226-FRA',
+41 verbose headers   'x-cache': 'MISS',
+41 verbose headers   'x-cache-hits': '0',
+41 verbose headers   'x-timer': 'S1436891287.544040,VS0,VE2034' }
+42 error publish Failed PUT 403
+43 error Error: "You cannot publish over the previously published version 2.0.1." : ng-node-compile
+43 error     at RegClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:308:14)
+43 error     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:246:65)
+43 error     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:236:22)
+43 error     at Request.emit (events.js:98:17)
+43 error     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1142:14)
+43 error     at Request.emit (events.js:117:20)
+43 error     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1096:12)
+43 error     at IncomingMessage.emit (events.js:117:20)
+43 error     at _stream_readable.js:943:16
+43 error     at process._tickCallback (node.js:419:13)
+44 error If you need help, you may report this *entire* log,
+44 error including the npm and node versions, at:
+44 error     <http://github.com/npm/npm/issues>
+45 error System Windows_NT 6.1.7601
+46 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish" "--force"
+47 error cwd C:\Users\Moshe\Desktop\ng-node-compile
+48 error node -v v0.10.32
+49 error npm -v 1.4.28
+50 verbose exit [ 1, true ]
