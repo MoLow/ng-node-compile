@@ -5,6 +5,9 @@ this is a pretty new package, so don't hesitate adding issues or pull requests!
 
 Note that as of our 2.0.0 release, nc-node-compile no longer works with Node.js™, and instead requires io.js. You are still welcome to install a release in the [1.x](https://github.com/MoLow/ng-node-compile/tree/v1.x) series if you use Node.js™.
 
+[![npm](https://nodei.co/npm/ng-node-compile.png)](https://www.npmjs.com/package/ng-node-compile)
+
+
 ```js
 new ngcompile().$interpolate("hello {{name}}")({ name: 'Jhon doe' });
 ```
