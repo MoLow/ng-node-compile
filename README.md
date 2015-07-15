@@ -70,13 +70,14 @@ var ngEnviorment = new ngcompile([{ name: 'test', path: './test.js' }], './angul
 ```
 
 **async issues**
-usualy ng-node-compile should work perfectly in synchronic calls. if You get a "Angular enviorment not yet ready" error,
+usualy ng-node-compile is required in head Of page, and then used only some time after that, So it could be used totaly synchronously.
+if You want to use is Asynchronously, use the env promise, and the onReady promise:
 you could use the onReady function:
 ```js
 var ngcompile = require('ng-node-compile');
-ngcompile.prototype.onEnvReady(function(){
+ngcompile.prototype.env.then(function(){
 	var ngEnviorment = new ngcompile();
-	ngEnviorment.onReady(function(){
+	ngEnviorment.onReady.then(function(){
 		ngEnviorment.$interpolate("hello {{name}}")({ name: 'Jhon doe' });
 	});
 });

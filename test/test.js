@@ -15,65 +15,54 @@ describe('arguments', function () {
 
 describe('Ready callback', function () {
     it('Should callback on envReady', function (done) {
-		ngcompile.prototype.onEnvReady(function(){
-			var ngEnviorment = new ngcompile();
-			ngEnviorment.should.be.ok;			
-			ngcompile.prototype.envReady=false;
-			ngEnviorment.onEnvReady(function(){
-				ngEnviorment.envReady.should.be.false;	
-				ngcompile.prototype.envReady=true;
-				ngEnviorment.onEnvReady(function(){
-					ngEnviorment.ready.should.be.true;
-					done();
-				});
-			});
-			ngcompile.prototype.envReadyCallback();
-		});
+        ngcompile.prototype.env.then(function () {
+            var ngEnviorment = new ngcompile();
+            ngEnviorment.should.be.ok;
+            done();
+        });
+
+        it('Should callback on ready', function (done) {
+            var ngEnviorment = new ngcompile();
+            ngEnviorment.should.be.ok;
+            ngEnviorment.ready = false;
+            ngEnviorment.onReady.then(function () {
+                ngEnviorment.ready.should.be.true;
+            });
+            ngcompile.prototype.constructor.call(ngEnviorment);
+        });
     });
-	
-	it('Should callback on ready', function (done) {
-		var ngEnviorment = new ngcompile();
-		ngEnviorment.should.be.ok;
-        ngEnviorment.ready = false;
-		ngEnviorment.onReady(function(){
-			ngEnviorment.ready.should.be.true;
-			ngEnviorment.onReady(done);
-		});
-		ngcompile.prototype.constructor.call(ngEnviorment);
-    });
-	
 });
 
 describe('Error handling', function () {
-	it('Should throw not ready error on constructor', function () {
-			ngcompile.prototype.envReady = false;
-			ngcompile.should.throw("Angular enviorment not yet ready");
-			ngcompile.prototype.envReady = true;
-	});
-	it('Should throw not ready error in new scope', function () {
-		var ngEnviorment = new ngcompile();
-		ngEnviorment.should.be.ok;
-        ngEnviorment.ready = false;
-		ngEnviorment.$new.bind(ngEnviorment).should.throw("Angular enviorment not yet ready");
+    it('Should throw not ready error on constructor', function () {
+        ngcompile.prototype.envReady = false;
+        ngcompile.should.throw("Angular enviorment not yet ready");
+        ngcompile.prototype.envReady = true;
     });
-	it('Should throw not ready error in interpolate', function () {
-		var ngEnviorment = new ngcompile();
-		ngEnviorment.should.be.ok;
+    it('Should throw not ready error in new scope', function () {
+        var ngEnviorment = new ngcompile();
+        ngEnviorment.should.be.ok;
         ngEnviorment.ready = false;
-		ngEnviorment.$interpolate.bind(ngEnviorment,"hello {{name}}!").should.throw("Angular enviorment not yet ready");
+        ngEnviorment.$new.bind(ngEnviorment).should.throw("Angular enviorment not yet ready");
     });
-	it('Should throw not ready error in compile', function () {
-		var ngEnviorment = new ngcompile();
-		ngEnviorment.should.be.ok;
+    it('Should throw not ready error in interpolate', function () {
+        var ngEnviorment = new ngcompile();
+        ngEnviorment.should.be.ok;
         ngEnviorment.ready = false;
-        ngEnviorment.$compile.bind(ngEnviorment,"<div ng-repeat=\"n in [1,2,3,4,5]\">hello {{name}} {{n}}</div>").should.throw("Angular enviorment not yet ready");
+        ngEnviorment.$interpolate.bind(ngEnviorment, "hello {{name}}!").should.throw("Angular enviorment not yet ready");
+    });
+    it('Should throw not ready error in compile', function () {
+        var ngEnviorment = new ngcompile();
+        ngEnviorment.should.be.ok;
+        ngEnviorment.ready = false;
+        ngEnviorment.$compile.bind(ngEnviorment, "<div ng-repeat=\"n in [1,2,3,4,5]\">hello {{name}} {{n}}</div>").should.throw("Angular enviorment not yet ready");
     });
 });
 
 describe('$interpolate', function () {
     it('Should interpolate a string with angulare service', function () {
         var ngEnviorment = new ngcompile();
-		ngEnviorment.should.be.ok;
+        ngEnviorment.should.be.ok;
         ngEnviorment.$interpolate("hello {{name}}!")({ name: 'Jhon doe' }).should.equal('hello Jhon doe!');
     });
 
@@ -82,30 +71,33 @@ describe('$interpolate', function () {
 describe('$compile', function () {
     it('Should simple compile', function () {
         var ngEnviorment = new ngcompile();
-		ngEnviorment.should.be.ok;
+        ngEnviorment.should.be.ok;
         ngEnviorment.$compile("<div ng-repeat=\"n in [1,2,3,4,5]\">hello {{name}} {{n}}</div>")({ name: 'Jhon doe' })
             .should.equal('<!-- ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 1</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 2</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 3</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 4</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 5</div><!-- end ngRepeat: n in [1,2,3,4,5] -->');
     });
 
-	it('Should compile object', function () {
+    it('Should compile object', function () {
         var ngEnviorment = new ngcompile();
-		ngEnviorment.should.be.ok;
-        ngEnviorment.$compile({outerHTML: "<div ng-repeat=\"n in [1,2,3,4,5]\">hello {{name}} {{n}}</div>"})({ name: 'Jhon doe' })
+        ngEnviorment.should.be.ok;
+        ngEnviorment.$compile({ outerHTML: "<div ng-repeat=\"n in [1,2,3,4,5]\">hello {{name}} {{n}}</div>" })({ name: 'Jhon doe' })
             .should.equal('<!-- ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 1</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 2</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 3</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 4</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 5</div><!-- end ngRepeat: n in [1,2,3,4,5] -->');
-			ngEnviorment.$compile([{outerHTML: "<div ng-repeat=\"n in [1,2,3,4,5]\">hello {{name}} {{n}}</div>"}])({ name: 'Jhon doe' })
-            .should.equal('<!-- ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 1</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 2</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 3</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 4</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 5</div><!-- end ngRepeat: n in [1,2,3,4,5] -->');
+        ngEnviorment.$compile([{ outerHTML: "<div ng-repeat=\"n in [1,2,3,4,5]\">hello {{name}} {{n}}</div>" }])({ name: 'Jhon doe' })
+        .should.equal('<!-- ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 1</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 2</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 3</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 4</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" class="ng-binding ng-scope">hello Jhon doe 5</div><!-- end ngRepeat: n in [1,2,3,4,5] -->');
     });
-	
+
     it('Should compile with [[ instead of {{', function () {
         var ngEnviorment = new ngcompile({ startSymbol: '[[', endSymbol: ']]' });
-		ngEnviorment.should.be.ok;
+        ngEnviorment.should.be.ok;
         ngEnviorment.$compile("<div class=\"[[name]]\">hello {{name}}</div>")({ name: 'active' })
                 .should.equal('<div class="active">hello {{name}}</div>');
+
+        new ngcompile({ startSymbol: '[[' }).should.be.ok;
+        new ngcompile({ endSymbol: ']]' }).should.be.ok;
     });
 
     it('Should compile with extra module', function () {
         var ngEnviorment = new ngcompile([{ name: 'test', path: './test/modules/a.js' }]);
-		ngEnviorment.should.be.ok;
+        ngEnviorment.should.be.ok;
         ngEnviorment.$compile("<div ng-repeat=\"n in [1,2,3,4,5]\" yellow=\"{{n==3}}\">hello {{name}} {{n}}</div>")({ name: 'Jhon doe' })
              .should.equal('<!-- ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" yellow="false" class="ng-binding ng-scope">hello Jhon doe 1</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" yellow="false" class="ng-binding ng-scope">hello Jhon doe 2</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" yellow="true" class="ng-binding ng-scope" style="color: yellow;">hello Jhon doe 3</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" yellow="false" class="ng-binding ng-scope">hello Jhon doe 4</div><!-- end ngRepeat: n in [1,2,3,4,5] --><div ng-repeat="n in [1,2,3,4,5]" yellow="false" class="ng-binding ng-scope">hello Jhon doe 5</div><!-- end ngRepeat: n in [1,2,3,4,5] -->');
     });

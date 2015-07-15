@@ -22,9 +22,8 @@ function ngCompile(modules, angularPath, settings) {
 
     this.settings = settings || {};
     this.modules = modules;
-	var	_self = this;
+    var _self = this;
     this.modules.unshift({ name: 'ng', path: angularPath || path.resolve(__dirname, "angular.js") });
-    this.ready = false;
 
     if (!ngCompile.prototype.envReady) throw new Error(ENVIORMENT_NOT_READY);
 
@@ -40,49 +39,40 @@ function ngCompile(modules, angularPath, settings) {
     this.angular = window.angular;
 
     if (_self.settings.startSymbol || _self.settings.endSymbol) {
+        var start = _self.settings.startSymbol || '{{', end = _self.settings.endSymbol || '}}';
         angular.module('ngCompileInterpolateProviderSymbols', []).config(function ($interpolateProvider) {
-			/* istanbul ignore else */
-            if (_self.settings.startSymbol) $interpolateProvider.startSymbol(_self.settings.startSymbol.toString());
-			/* istanbul ignore else */
-            if (_self.settings.endSymbol) $interpolateProvider.endSymbol(_self.settings.endSymbol.toString());
+            $interpolateProvider.startSymbol(start.toString());
+            $interpolateProvider.endSymbol(end.toString());
         });
         this._modules.push('ngCompileInterpolateProviderSymbols');
     }
 
-    window.angular.injector(this._modules).invoke(function ($rootScope, $compile, $interpolate) {
-        _self.services = { $rootScope: $rootScope, $compile: $compile, $interpolate: $interpolate };
-        _self.ready = true;
-        if (typeof _self.readyCallback === "function") _self.readyCallback();
+    this.onReady = new Promise(function (resolve, reject) {
+        _self.ready = false;
+        window.angular.injector(_self._modules).invoke(function ($rootScope, $compile, $interpolate) {
+            _self.services = { $rootScope: $rootScope, $compile: $compile, $interpolate: $interpolate };
+            _self.ready = true;
+            resolve();
+        });
     });
 }
-
-ngCompile.prototype.onEnvReady = function (callback) {
-    if (ngCompile.prototype.envReady)
-        callback();
-    else
-        ngCompile.prototype.envReadyCallback = callback;
-}
-ngCompile.prototype.envReady = false;
-ngCompile.prototype.env = jsdom.env({
-	html: '<p></p>',
-	done: function (errors, window) {
-		/* istanbul ignore if */
-		if (errors)
-			console.log(errors);
-		else {
-			global.window = window;
-			global.document = window.document;
-			ngCompile.prototype.envReady = true;
-			if(ngCompile.prototype.envReadyCallback) ngCompile.prototype.envReadyCallback();
-		}
-	}
+ngCompile.prototype.env = new Promise(function (resolve, reject) {
+    ngCompile.prototype.envReady = false;
+    jsdom.env({
+        html: '<p></p>',
+        done: function (errors, window) {
+            /* istanbul ignore if */
+            if (errors)
+                reject(errors)
+            else {
+                global.window = window;
+                global.document = window.document;
+                ngCompile.prototype.envReady = true;
+                resolve();
+            }
+        }
+    })
 });
-ngCompile.prototype.onReady = function (callback) {
-    if (this.ready)
-        callback();
-    else
-        this.readyCallback = callback;
-}
 ngCompile.prototype.$new = function () {
     if (!this.ready) throw new Error(ENVIORMENT_NOT_READY);
     return this.services.$rootScope.$new()
